@@ -1,12 +1,11 @@
 from finaldamage import Critico
 
 class Player:
-    def __init__(self, name, arma):
+    def __init__(self, name, hp_base, arma):
         self.name = name
         self.element = "fogo"
-        self.hp_base = 100
-        self.hp_atual = 100
-
+        self.hp_base = hp_base
+        self.hp_atual = hp_base
         self.arma = arma
 
     def fight(self, enemy):
@@ -20,12 +19,11 @@ class Player:
             
 
 class Enemy:
-    def __init__(self, name, arma):
+    def __init__(self, name, hp_base, arma):
         self.name = name
         self.element = "agua"
-        self.hp_base = 100
-        self.hp_atual = 100
-
+        self.hp_base = hp_base
+        self.hp_atual = hp_base
         self.arma = arma
 
     def fight(self, player):

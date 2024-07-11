@@ -1,9 +1,12 @@
 from characthers import Player, Enemy
 from espadas import *
 from combate import Combate
+import os
 
-player1 = Player("Kelwin", espada_de_madeira)
-enemy1 = Enemy("Goblin", espada_de_madeira)
+os.system('cls')
+
+player1 = Player("Kelwin", 100, espada_de_madeira)
+enemy1 = Enemy("Goblin", 100, espada_de_madeira)
 
 primeiro_combate = Combate(player1, enemy1)
 
