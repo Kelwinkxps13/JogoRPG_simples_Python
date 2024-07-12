@@ -29,6 +29,9 @@ class Combate:
 
             print(f'rodada: {count_rodadas}')
             print("")
+            print(f'nv{self.player.level.atual_level}')
+            print(f'xp: {self.player.level.atual_xp}/{self.player.level.xp_next_level}')
+            print("")
             print(f'arma atual: {self.player.arma.name}')
             print(f'taxa critica: {self.player.arma.taxa}%')
             print(f'dano critico: {self.player.arma.dano}%')
