@@ -70,6 +70,43 @@ class Personagem:
             enemy.hp_atual -= self._arma.atk_base
             print(f'{self._name} ataca {enemy.name} e causa {self._arma.atk_base} de dano!!')
 
+
+    def ganhar_xp_while(self, win):
+
+        x = self._level.atual_xp
+        x += win
+
+        print(f'voce ganhou {win} de xp!')
+
+        if (self._level.atual_level == 100):
+            self._level.atual_xp += win
+        else:
+            z = 0
+            k = int(self._level.xp_next_level)
+            z = k - self._level.atual_xp
+            if (self._level.atual_level < 100 and x < z):
+                self._level.atual_xp += win
+                restam = k - self._level.atual_xp
+                print(f'faltam {restam} de xp para o proximo level!')
+            else:
+                while (x >= int(self._level.xp_next_level)):
+
+                    self._level.atual_xp = x - (int(self._level.xp_next_level))
+                    y = 0
+                    y = self._level.atual_xp
+                    new_level = 0
+                    new_level = self._level.max_level[self._level.atual_level+1][0]
+                    self._level.atual_level = new_level #lv3
+                    if (self._level.atual_level == 100):
+                        self._level.xp_next_level = "--"
+                    else:
+                        self._level.xp_next_level = self._level.max_level[self._level.atual_level+1][1]
+                        x = y
+
+                print(f'voce subiu para o nivel {self._level.atual_level}! continue assim!')
+                restam1 = int(self._level.xp_next_level) - self._level.atual_xp
+                print(f'faltam {restam1} de xp para o proximo level!')
+
     # def ganhar_xp(self, win): 
 
     #     #supunhetemos que estamamos no lv2 com 15/30
