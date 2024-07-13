@@ -34,7 +34,7 @@ class Level:
 
         self._atual_level = 0
         self._atual_xp = 0
-        self._xp_next_level = self._max_level[self._atual_level+1][1]
+        self._xp_next_level = ""
 
     @property
     def max_level(self):
@@ -51,6 +51,10 @@ class Level:
     @atual_level.setter
     def atual_level(self, atual_level):
         self._atual_level = atual_level
+        if self._atual_level < 100:
+            self._xp_next_level = self._max_level[self._atual_level+1][1]
+        else:
+            self._xp_next_level = "--"
 
     @property
     def atual_xp(self):
@@ -63,6 +67,10 @@ class Level:
     @property
     def xp_next_level(self):
         return self._xp_next_level
+    
+    @xp_next_level.setter
+    def xp_next_level(self, xp_next_level):
+        self._xp_next_level = xp_next_level
 
 
 

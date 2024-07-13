@@ -1,4 +1,4 @@
-from Assets.weapons import Espada
+from Assets.espada import Espada
 
 
 espada_de_madeira = Espada()

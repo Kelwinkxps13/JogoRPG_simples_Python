@@ -1,5 +1,5 @@
-from .finaldamage import Critico
-from .characthrers_level import *
+from .critico import Critico
+from .level import *
 
 class Personagem:
     def __init__(self):
@@ -70,20 +70,39 @@ class Personagem:
             enemy.hp_atual -= self._arma.atk_base
             print(f'{self._name} ataca {enemy.name} e causa {self._arma.atk_base} de dano!!')
 
-    def ganhar_xp(self, win): 
+    # def ganhar_xp(self, win): 
 
-        #supunhetemos que estamamos no lv2 com 15/30
-        # win = 20
-        # teoricamente ele ficaria com 5/40 -- 35/30 se der errado
+    #     #supunhetemos que estamamos no lv2 com 15/30
+    #     #win = 100
+    #     #teoricamente ele ficaria com 5/40 -- 75/30 se der errado
 
-        x = 0
-        x = self._level.atual_xp # xp atual = 15
-        x += win # 15+20 = 35
+    #     x = 0
+    #     x = self._level.atual_xp #xp atual = 15
+    #     x += win #15 + 100 = 115
 
-        print(f'voce ganhou {win} de xp!')
+    #     result = False
+    #     if (self._level.atual_level == 100):
+    #         result = False
+    #     elif (x >= int(self._level.xp_next_level) and self._level.atual_level < 100): #115 >= 30
+    #         result = True
 
-        if(x >= self._level.xp_next_level): # x >= 30 -- 35 >= 30
-            self._level.atual_xp = x - self._level.xp_next_level # 35 - 30 = 5
-            self._level.xp_next_level = self._level.max_level[self._level.atual_level+1][1] # 40
-            self._level.atual_level = self._level.max_level[self._level.atual_level+1][0] # lv3
-            print(f'voce subiu para o nivel {self._level.atual_level}! continue assim!')
+
+    #     if(result): #x >= 30 -- 115 >= 30
+    #         self._level.atual_xp = x - (int(self._level.xp_next_level)) #115 - 30 = 75
+
+    #         new_level = 0
+    #         new_level = self._level.max_level[self._level.atual_level+1][0]
+    #         self._level.atual_level = new_level #lv3
+    #         print(f'voce subiu para o nivel {self._level.atual_level}! continue assim!')
+
+    #         if (self._level.atual_level == 100):
+    #             self._level.xp_next_level = "--"
+    #         elif (self._level.atual_level < 100):
+    #             self._level.xp_next_level = self._level.max_level[self._level.atual_level+1][1] #40
+    #             if (self._level.atual_xp >= int(self._level.xp_next_level)): #75 >= 40
+    #                 self.ganhar_xp(self._level.atual_xp)
+
+    #     elif (result == False):
+    #         self._level.atual_xp += win
+
+    #     print(f'voce ganhou {win} de xp!')
