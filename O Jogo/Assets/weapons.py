@@ -1,58 +1,100 @@
 class Espada:
-    def __init__(self, name, atk_base, taxa, dano):
-        self.name = name
-        self.atk_base = atk_base
-        self.taxa = taxa
-        self.dano = dano
+    def __init__(self):
+        self._name = ""
+        self._atk_base = 0
+        self._taxa = 0
+        self._dano = 0
+        self._afetado = ""
+        self._quantidade = 0
+        self._tempo = 0
+        self._quantidade_de_vezes_que_pode_usar = 0
+        self._descricao_efeito = ""
 
-        self.afetado = ""
-        self.quantidade = 0
-        self.tempo = 0
-        self.quantidade_de_vezes_que_pode_usar = 0
-        self.descricao_efeito = ""
+    @property
+    def name(self):
+        return self._name
 
-    def set_afetado (self, afetado):
-            self.afetado = afetado
+    @name.setter
+    def name(self, name):
+        self._name = name
 
-    def set_quantidade (self, quantidade):
-            self.quantidade = quantidade
+    @property
+    def atk_base(self):
+        return self._atk_base
 
-    def set_tempo (self, tempo):
-            self.tempo = tempo
+    @atk_base.setter
+    def atk_base(self, atk_base):
+        self._atk_base = atk_base
 
-    def set_descricao_efeito (self, descricao_efeito):
-            self.descricao_efeito = descricao_efeito
+    @property
+    def taxa(self):
+        return self._taxa
 
-    def set_quantidade_de_vezes_que_pode_usar (self, quantidade_de_vezes_que_pode_usar):
-            self.quantidade_de_vezes_que_pode_usar = quantidade_de_vezes_que_pode_usar
+    @taxa.setter
+    def taxa(self, taxa):
+        self._taxa = taxa
+
+    @property
+    def dano(self):
+        return self._dano
+
+    @dano.setter
+    def dano(self, dano):
+        self._dano = dano
+
+    @property
+    def afetado(self):
+        return self._afetado
+
+    @afetado.setter
+    def afetado(self, afetado):
+        self._afetado = afetado
+
+    @property
+    def quantidade(self):
+        return self._quantidade
+
+    @quantidade.setter
+    def quantidade(self, quantidade):
+        self._quantidade = quantidade
+
+    @property
+    def tempo(self):
+        return self._tempo
+
+    @tempo.setter
+    def tempo(self, tempo):
+        self._tempo = tempo
+
+    @property
+    def quantidade_de_vezes_que_pode_usar(self):
+        return self._quantidade_de_vezes_que_pode_usar
+
+    @quantidade_de_vezes_que_pode_usar.setter
+    def quantidade_de_vezes_que_pode_usar(self, quantidade_de_vezes_que_pode_usar):
+        self._quantidade_de_vezes_que_pode_usar = quantidade_de_vezes_que_pode_usar
+
+    @property
+    def descricao_efeito(self):
+        return self._descricao_efeito
+
+    @descricao_efeito.setter
+    def descricao_efeito(self, descricao_efeito):
+        self._descricao_efeito = descricao_efeito
 
     def ativar_efeito(self):
-            if(self.afetado == "taxa critica"):
-                self.taxa += self.quantidade
-            elif(self.afetado == "dano critico"):
-                self.dano += self.quantidade
-            elif(self.afetado == "ataque base"):
-                self.atk_base += self.quantidade
+            if(self._afetado == "taxa critica"):
+                self._taxa += self._quantidade
+            elif(self._afetado == "dano critico"):
+                self._dano += self._quantidade
+            elif(self._afetado == "ataque base"):
+                self._atk_base += self._quantidade
 
     def desativar_efeito(self):
-            if(self.afetado == "taxa critica"):
-                self.taxa -= self.quantidade
-            elif(self.afetado == "dano critico"):
-                self.dano -= self.quantidade
-            elif(self.afetado == "ataque base"):
-                self.atk_base -= self.quantidade
+            if(self._afetado == "taxa critica"):
+                self._taxa -= self._quantidade
+            elif(self._afetado == "dano critico"):
+                self._dano -= self._quantidade
+            elif(self._afetado == "ataque base"):
+                self._atk_base -= self._quantidade
         # aumenta ... em ... durante ... rodadas
-
-class Lanca:
-    def __init__(self, name, atk_base, taxa, dano):
-        self.name = name
-        self.atk_base = atk_base
-        self.taxa = taxa
-        self.dano = dano
-
-class Arco:
-    def __init__(self, name, atk_base, taxa, dano):
-        self.name = name
-        self.atk_base = atk_base
-        self.taxa = taxa
-        self.dano = dano

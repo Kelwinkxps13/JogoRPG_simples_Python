@@ -1,14 +1,14 @@
 # cada raça tem um level e xp diferente
 
 class Level:
-    def __init__(self, atual_level, atual_xp, raca):
+    def __init__(self):
 
-        self.max_level = [None] * (100+1)
-        self.raca = raca
+        self._max_level = [None] * (100+1)
+        self._raca = "humano"
 
         if(self.raca == "humano"):
 
-            self.max_level[0] = [0, 0]
+            self._max_level[0] = [0, 0]
 
             ilevel = 1
             count_dezena = 1
@@ -20,21 +20,49 @@ class Level:
 
                     if count_dezena == 10:
                         ixp *=10
-                    self.max_level[ilevel] = [ilevel, ixp*count_dezena-1]
+                    self._max_level[ilevel] = [ilevel, ixp*count_dezena-1]
 
                     if count_dezena == 19:
                         count_dezena = 9
 
                 else:
 
-                    self.max_level[ilevel] = [ilevel, ixp*count_dezena-1]
+                    self._max_level[ilevel] = [ilevel, ixp*count_dezena-1]
 
                 count_dezena += 1
                 ilevel += 1
 
-        self.atual_level = atual_level
-        self.atual_xp = atual_xp
-        self.xp_next_level = self.max_level[self.atual_level+1][1]
+        self._atual_level = 0
+        self._atual_xp = 0
+        self._xp_next_level = self._max_level[self._atual_level+1][1]
+
+    @property
+    def max_level(self):
+        return self._max_level
+
+    @property
+    def raca(self):
+        return self._raca
+
+    @property
+    def atual_level(self):
+        return self._atual_level
+
+    @atual_level.setter
+    def atual_level(self, atual_level):
+        self._atual_level = atual_level
+
+    @property
+    def atual_xp(self):
+        return self._atual_xp
+
+    @atual_xp.setter
+    def atual_xp(self, atual_xp):
+        self._atual_xp = atual_xp
+
+    @property
+    def xp_next_level(self):
+        return self._xp_next_level
 
 
 
