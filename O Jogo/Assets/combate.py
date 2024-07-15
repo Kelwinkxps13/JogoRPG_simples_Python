@@ -1,40 +1,41 @@
 import os 
 
 class Combate:
-    def __init__(self):
-        self._player = []
-        self._enemy = []
 
-    @property
-    def player(self):
-        return self._player
+    # def __init__(self):
+    #     self._player = []
+    #     self._enemy = []
 
-    @player.setter
-    def player(self, player):
-        self._player = player
+    # @property
+    # def player(self):    
+    #     return self._player
 
-    @property
-    def enemy(self):
-        return self._enemy
+    # @player.setter
+    # def player(self, player):
+    #     self._player = player
 
-    @enemy.setter
-    def enemy(self, enemy):
-        self._enemy = enemy
+    # @property
+    # def enemy(self):    
+    #     return self._enemy
+
+    # @enemy.setter
+    # def enemy(self, enemy):
+    #     self._enemy = enemy
 
 
-    def acao(self):
+    def acao(player, enemy):
         
         
         rodadas_efeito_arma = 0
         count_rodadas = 1
         efeito_arma = False
-        quantidade_de_vezes_que_pode_usar_o_efeito = self._player.arma.quantidade_de_vezes_que_pode_usar
+        quantidade_de_vezes_que_pode_usar_o_efeito = player.arma.quantidade_de_vezes_que_pode_usar
 
-        while self._player.hp_atual > 0 and self._enemy.hp_atual > 0:
+        while player.hp_atual > 0 and enemy.hp_atual > 0:
 
             if rodadas_efeito_arma == 0 and efeito_arma == True:
-                print(f'o efeito da arma {self._player.arma.name} acabou!')
-                self._player.arma.desativar_efeito()
+                print(f'o efeito da arma {player.arma.name} acabou!')
+                player.arma.desativar_efeito()
                 efeito_arma = False
 
             print("")
@@ -46,16 +47,16 @@ class Combate:
 
             print(f'rodada: {count_rodadas}')
             print("")
-            print(f'nv{self._player.level.atual_level}')
-            print(f'xp: {self._player.level.atual_xp}/{self._player.level.xp_next_level}')
+            print(f'nv{player.level.atual_level}')
+            print(f'xp: {player.level.atual_xp}/{player.level.xp_next_level}')
             print("")
-            print(f'arma atual: {self._player.arma.name}')
-            print(f'taxa critica: {self._player.arma.taxa}%')
-            print(f'dano critico: {self._player.arma.dano}%')
-            print(f'ataque base: {self._player.arma.atk_base}')
+            print(f'arma atual: {player.arma.name}')
+            print(f'taxa critica: {player.arma.taxa}%')
+            print(f'dano critico: {player.arma.dano}%')
+            print(f'ataque base: {player.arma.atk_base}')
             print("")
-            print(f'hp {self._player.name}: {self._player.hp_atual}/{self._player.hp_base}')
-            print(f'hp {self._enemy.name}: {self._enemy.hp_atual}/{self._player.hp_base}')
+            print(f'hp {player.name}: {player.hp_atual}/{player.hp_base}')
+            print(f'hp {enemy.name}: {enemy.hp_atual}/{enemy.hp_base}')
 
             print("")
             print("#########################################################")
@@ -70,27 +71,24 @@ class Combate:
 
             if choice == "1":
                 os.system('cls')
-
-                print("")
-                print("#########################################################")
-                print("")
-
-                self._player.fight(self._enemy)
+                player.fight(enemy)
 
                 if rodadas_efeito_arma >0 and efeito_arma:
                     rodadas_efeito_arma -=1
 
                 count_rodadas += 1
 
-                if self._enemy.hp_atual <=0:
+                if enemy.hp_atual <=0:
                     print("voce ganhou!")
                     print(f'total de rodadas:{count_rodadas}')
+                    return False
 
                 else:
-                    self._enemy.fight(self._player)
-                    if self._player.hp_atual <=0:
+                    enemy.fight(player)
+                    if player.hp_atual <=0:
                         print("voce perdeu!")
                         print(f'total de rodadas:{count_rodadas}')
+                        return True
 
             elif choice == "2":
 
@@ -103,7 +101,7 @@ class Combate:
                     print("#########################################################")
                     print("")
 
-                    print(f'descrição: {self._player.arma.descricao_efeito}')
+                    print(f'descrição: {player.arma.descricao_efeito}')
                     print(f'pode usar esse efeito {quantidade_de_vezes_que_pode_usar_o_efeito} vezes')
                     print("[1] ativar")
                     print("[2] voltar")
@@ -116,10 +114,10 @@ class Combate:
                             print("o efeito já está ativo!")
                         else:    
                             os.system('cls')
-                            rodadas_efeito_arma = self._player.arma.tempo
+                            rodadas_efeito_arma = player.arma.tempo
                             efeito_arma = True
                             quantidade_de_vezes_que_pode_usar_o_efeito -= 1
-                            self._player.arma.ativar_efeito()
+                            player.arma.ativar_efeito()
                             print("efeito foi ativado!!")
                             break
                         # efeito de arma estara ativado
@@ -132,3 +130,6 @@ class Combate:
                         break
                     else:
                         os.system('cls')
+            
+            else:
+                os.system('cls')
