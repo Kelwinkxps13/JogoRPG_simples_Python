@@ -52,9 +52,9 @@ class Personagem:
     def arma(self, arma):
         x = Espada()
         x.name = arma.name
-        x._atk_base = arma._atk_base
-        x._taxa = arma._taxa
-        x._dano = arma._dano
+        x.atk_base = arma.atk_base
+        x.taxa = arma.taxa
+        x.dano = arma.dano
         x.afetado = arma.afetado
         x.quantidade = arma.quantidade
         x.tempo = arma.tempo
