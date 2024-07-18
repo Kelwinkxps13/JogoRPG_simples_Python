@@ -81,20 +81,4 @@ class Espada:
     @descricao_efeito.setter
     def descricao_efeito(self, descricao_efeito):
         self._descricao_efeito = descricao_efeito
-
-    def ativar_efeito(self):
-            if(self._afetado == "taxa critica"):
-                self._taxa += self._quantidade
-            elif(self._afetado == "dano critico"):
-                self._dano += self._quantidade
-            elif(self._afetado == "ataque base"):
-                self._atk_base += self._quantidade
-
-    def desativar_efeito(self):
-            if(self._afetado == "taxa critica"):
-                self._taxa -= self._quantidade
-            elif(self._afetado == "dano critico"):
-                self._dano -= self._quantidade
-            elif(self._afetado == "ataque base"):
-                self._atk_base -= self._quantidade
         # aumenta ... em ... durante ... rodadas

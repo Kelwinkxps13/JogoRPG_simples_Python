@@ -35,7 +35,7 @@ class Combate:
 
             if rodadas_efeito_arma == 0 and efeito_arma == True:
                 print(f'o efeito da arma {player.arma.name} acabou!')
-                player.arma.desativar_efeito()
+                player.desativar_efeito_arma()
                 efeito_arma = False
 
             print("")
@@ -117,7 +117,7 @@ class Combate:
                             rodadas_efeito_arma = player.arma.tempo
                             efeito_arma = True
                             quantidade_de_vezes_que_pode_usar_o_efeito -= 1
-                            player.arma.ativar_efeito()
+                            player.ativar_efeito_arma()
                             print("efeito foi ativado!!")
                             break
                         # efeito de arma estara ativado

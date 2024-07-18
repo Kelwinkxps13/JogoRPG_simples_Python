@@ -1,5 +1,7 @@
 from .critico import Critico
 from .level import *
+from Instances.espadas import *
+import sys
 
 class Personagem:
     def __init__(self):
@@ -7,7 +9,7 @@ class Personagem:
         self._element = ""
         self._hp_base = 0
         self._hp_atual = 0
-        self._arma = []
+        self._arma = None
         self._level = []
 
     @property
@@ -48,7 +50,17 @@ class Personagem:
 
     @arma.setter
     def arma(self, arma):
-        self._arma = arma
+        x = Espada()
+        x.name = arma.name
+        x._atk_base = arma._atk_base
+        x._taxa = arma._taxa
+        x._dano = arma._dano
+        x.afetado = arma.afetado
+        x.quantidade = arma.quantidade
+        x.tempo = arma.tempo
+        x.quantidade_de_vezes_que_pode_usar = arma.quantidade_de_vezes_que_pode_usar
+        x.descricao_efeito = arma.descricao_efeito
+        self._arma = x
 
     @property
     def level(self):
@@ -74,39 +86,58 @@ class Personagem:
     def ganhar_xp_while(self, win):
 
         x = self._level.atual_xp
-        x += win
-
+        w = x + win
         print(f'voce ganhou {win} de xp!')
 
-        if (self._level.atual_level == 100):
+        if (self._level.atual_level >= 100):
             self._level.atual_xp += win
         else:
             z = 0
             k = int(self._level.xp_next_level)
             z = k - self._level.atual_xp
-            if (self._level.atual_level < 100 and x < z):
+            if (self._level.atual_level < 100 and win < z):
                 self._level.atual_xp += win
                 restam = k - self._level.atual_xp
                 print(f'faltam {restam} de xp para o proximo level!')
             else:
-                while (x >= int(self._level.xp_next_level)):
+                # print(self._level.xp_next_level)
+                # sys.exit()
+                while (w >= k):
 
-                    self._level.atual_xp = x - (int(self._level.xp_next_level))
+                    self._level.atual_xp = w - (int(self._level.xp_next_level))
+                    w = self._level.atual_xp
                     y = 0
                     y = self._level.atual_xp
                     new_level = 0
                     new_level = self._level.max_level[self._level.atual_level+1][0]
                     self._level.atual_level = new_level #lv3
                     if (self._level.atual_level == 100):
-                        self._level.xp_next_level = "--"
+                        self._level.xp_next_level = str("--")
                     else:
-                        self._level.xp_next_level = self._level.max_level[self._level.atual_level+1][1]
+                        self._level.xp_next_level = str(self._level.max_level[self._level.atual_level+1][1])
                         x = y
 
                 print(f'voce subiu para o nivel {self._level.atual_level}! continue assim!')
-                restam1 = int(self._level.xp_next_level) - self._level.atual_xp
-                print(f'faltam {restam1} de xp para o proximo level!')
+                if (self._level.atual_level < 100):
+                    restam1 = int(self._level.xp_next_level) - self._level.atual_xp
+                    print(f'faltam {restam1} de xp para o proximo level!')
 
+
+    def ativar_efeito_arma(self):
+        if(self._arma.afetado == "taxa critica"):
+            self._arma.taxa += self._arma.quantidade
+        elif(self._arma.afetado == "dano critico"):
+            self._arma.dano += self._arma.quantidade
+        elif(self._arma.afetado == "ataque base"):
+            self._arma.atk_base += self._arma.quantidade
+
+    def desativar_efeito_arma(self):
+        if(self._arma.afetado == "taxa critica"):
+            self._arma.taxa -= self._arma.quantidade
+        elif(self._arma.afetado == "dano critico"):
+            self._arma.dano -= self._arma.quantidade
+        elif(self._arma.afetado == "ataque base"):
+            self._arma.atk_base -= self._arma.quantidade
     # def ganhar_xp(self, win): 
 
     #     #supunhetemos que estamamos no lv2 com 15/30

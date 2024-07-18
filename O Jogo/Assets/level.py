@@ -52,7 +52,7 @@ class Level:
     def atual_level(self, atual_level):
         self._atual_level = atual_level
         if self._atual_level < 100:
-            self._xp_next_level = self._max_level[self._atual_level+1][1]
+            self._xp_next_level = str(self._max_level[self._atual_level+1][1])
         else:
             self._xp_next_level = "--"
 
@@ -62,6 +62,12 @@ class Level:
 
     @atual_xp.setter
     def atual_xp(self, atual_xp):
+        # quando alguem definir um nivel do personagem, e por algum motivo,
+        # extrapolar esse limite, o proprio setter define
+        # atual_xp como zero, pra evitar possiveis erros
+        k = int(self._xp_next_level)
+        if atual_xp >= k:
+            atual_xp = 0
         self._atual_xp = atual_xp
 
     @property
