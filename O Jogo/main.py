@@ -1,6 +1,5 @@
 from Assets.personagem import *
 from Instances.espadas import *
-from Assets.combate import Combate
 from Maps.mapa_teste import Mapa_teste
 import os
 import sys
@@ -45,6 +44,15 @@ enemy2.hp_atual = level_enemy2.max_level[level_enemy2.atual_level][2]
 enemy2.hp_base = enemy2.hp_atual
 enemy2.level = level_enemy2
 
+enemy3 = Personagem()
+enemy3.name = "Leandro 3"
+enemy3.arma = espada_de_madeira
+level_enemy3 = Level()
+level_enemy3.atual_level = 5
+enemy3.hp_atual = level_enemy3.max_level[level_enemy3.atual_level][2]
+enemy3.hp_base = enemy3.hp_atual
+enemy3.level = level_enemy3
+
 # tire o comentario dessa parte para testar a funcao de ganhar xp
 
 # player1.ganhar_xp_while(100000000)
@@ -59,5 +67,6 @@ t = Mapa_teste()
 t.player = player1
 t.array_enemies[0] = enemy1
 t.array_enemies[1] = enemy2
+t.array_enemies[2] = enemy3
 t.mapa_aberto()
 print('end')
